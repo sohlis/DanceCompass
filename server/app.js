@@ -80,7 +80,7 @@ db2.on("message", function(channel, message) {
 				if(!isNaN(val)) {
 					db.get("lastTS" + data.stage, function(err, reply2) {
 						var td=parseFloat(data.timestamp - reply2) / 1000.0;
-						var r=Math.pow(0.9,td)
+						var r=Math.pow(0.5,td)
 						if(r > 1) {
 							r=0.99;
 						}

@@ -93,7 +93,7 @@ function tick() {
         .ease("linear")
         .attr("transform", "translate(" + x(0) + ",0)")
 	.each("end", function() {
-		setInterval(tick, 500);	
+		setInterval(tick, 2000);	
 		});
     if(data.length > 40) {
       // pop the old data point off the front
