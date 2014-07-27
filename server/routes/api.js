@@ -11,8 +11,21 @@ router.post('/', function(req, res) {
 	res.send("ok");
 });
 router.get('/', function(req, res) {
-	req.db.get("intensity", function(err, reply) {
-		res.send(reply);
+	req.db.smembers("stages", function(err, reply) {
+		console.log(reply);
+		var m = req.db.multi();
+		for(var i in reply) {
+			m = m.get("intensity" + reply[i]);	
+		}
+		m.exec(function(err, replies) {
+			console.log("REPLIES");
+			console.log(replies);
+			var ret = {};
+			for(i in reply) {
+				ret[reply[i]] = replies[i];
+			}
+			res.send(JSON.stringify(ret));
+		});
 	});
 });
 module.exports = router;

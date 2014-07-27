@@ -80,7 +80,10 @@ function tick() {
  
   // push a new data point onto the back
   $.ajax('/api',{success:function(d, textStatus) {
-    data.push(d);
+    d=JSON.parse(d)["Rock"];
+    if(!isNaN(d)) {
+	  data.push(d);
+    }
 	  // redraw the line, and slide it to the left
     path
         .attr("d", line)
