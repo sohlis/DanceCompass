@@ -21,12 +21,13 @@ svg {
 
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 
 var n = 40,
     random = d3.random.normal(0, .2),
-    data = d3.range(n).map(random);
+    data  = d3.range(1).map(random);
 
 var margin = {top: 20, right: 20, bottom: 20, left: 40},
     width = 960 - margin.left - margin.right,
@@ -37,7 +38,7 @@ var x = d3.scale.linear()
     .range([0, width]);
 
 var y = d3.scale.linear()
-    .domain([-1, 1])
+    .domain([-3, 3])
     .range([height, 0]);
 
 var line = d3.svg.line()
@@ -76,22 +77,26 @@ var path = svg.append("g")
 tick();
 
 function tick() {
-
+ 
   // push a new data point onto the back
-  data.push(random());
-
-  // redraw the line, and slide it to the left
-  path
-      .attr("d", line)
-      .attr("transform", null)
-    .transition()
-      .duration(500)
-      .ease("linear")
-      .attr("transform", "translate(" + x(0) + ",0)")
-      .each("end", tick);
-
-  // pop the old data point off the front
-  data.shift();
+  $.ajax('/api',{success:function(d, textStatus) {
+    data.push(d);
+	  // redraw the line, and slide it to the left
+    path
+        .attr("d", line)
+        .attr("transform", null)
+      .transition()
+        .duration(500)
+        .ease("linear")
+        .attr("transform", "translate(" + x(0) + ",0)")
+	.each("end", function() {
+		setInterval(tick, 500);	
+		});
+    if(data.length > 40) {
+      // pop the old data point off the front
+      data.shift();
+    }
+  }});
 
 }
 
