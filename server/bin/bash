@@ -10,7 +10,7 @@ curl -i \
 curl -i \
             -H "Accept: application/json" \
          33   -H "Content-Type: application/json" \
-                 -X POST -d '{"intensity":".5", "stage":"Hip-Hop"}' \
+                 -X POST -d '{"intensity":".5", "stage":"Hip-hop"}' \
                  http://localhost:3000/api
 curl -i \
             -H "Accept: application/json" \
@@ -20,7 +20,7 @@ curl -i \
 curl -i \
             -H "Accept: application/json" \
          33   -H "Content-Type: application/json" \
-                 -X POST -d '{"intensity":"5.7", "stage":"Hip-Hop"}' \
+                 -X POST -d '{"intensity":"5.7", "stage":"Hip-hop"}' \
                  http://localhost:3000/api
 curl -i \
             -H "Accept: application/json" \
@@ -30,7 +30,7 @@ curl -i \
 curl -i \
             -H "Accept: application/json" \
          33   -H "Content-Type: application/json" \
-                 -X POST -d '{"intensity":"3.5", "stage":"Hip-Hop"}' \
+                 -X POST -d '{"intensity":"3.5", "stage":"Hip-hop"}' \
                  http://localhost:3000/api
 curl -i \
             -H "Accept: application/json" \
@@ -40,6 +40,6 @@ curl -i \
 curl -i \
             -H "Accept: application/json" \
          33   -H "Content-Type: application/json" \
-                 -X POST -d '{"intensity":"7.7", "stage":"Hip-Hop"}' \
+                 -X POST -d '{"intensity":"7.7", "stage":"Hip-hop"}' \
                  http://localhost:3000/api
 done

@@ -28,5 +28,9 @@ router.get('/', function(req, res) {
 		});
 	});
 });
+router.get('/clear', function(req, res) {
+	req.db.flushdb();
+	res.send("Cleared");
+});
 module.exports = router;
 

@@ -55,7 +55,7 @@ $(document).ready(function(){
         function danceData() {
           $.ajax('/api',{success:function(data, textStatus) {
             d=JSON.parse(data).Rock;
-            e=JSON.parse(data).Hip-Hop;
+            e=JSON.parse(data).Hip-hop;
             if(!isNaN(d) && !isNaN(e)) {
               getSizeAndColor(d, e);
             }
