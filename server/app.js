@@ -62,11 +62,37 @@ app.use(function(err, req, res, next) {
     });
 });
 
+var minReste
+var lastTimestamp = 0;
 db2.on("message", function(channel, message) {
 	console.log("message");
 	if(channel == "stream") {
-		var data = JSON.parse(message);
-		db.set("intensity",data.intensity);
+		try {
+			var data = JSON.parse(message);
+			db.get("intensity",function(err, reply) {
+				var val=parseFloat(reply);
+				data.intensity = parseFloat(data.intensity);
+				if(!isNaN(val)) {
+					db.get("lastTS", function(err, reply2) {
+						var td=parseFloat(data.timestamp - reply2) / 1000.0;
+						var r=Math.pow(0.9,td)
+						if(r > 1) {
+							r=0.99;
+						}
+						var newIntensity = val*r + (1.0-r)*data.intensity;
+						db.set("intensity", newIntensity);
+						db.set("lastTS", data.timestamp);
+
+					});
+				}
+				else {
+					db.set("intensity",data.intensity);
+					db.set("lastTS",data.timestamp);
+				}
+
+			});
+		} catch(ex) {
+		}
 	}
 });
 

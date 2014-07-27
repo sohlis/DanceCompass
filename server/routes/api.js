@@ -4,7 +4,9 @@ var router = express.Router();
 /* GET home page. */
 router.post('/', function(req, res) {
 	var data = JSON.parse(req.param('data'));
+	data.timestamp = Date.now();
 	req.db.publish("stream",JSON.stringify(data));
+	console.log(data);
 	res.send("ok");
 });
 router.get('/', function(req, res) {
