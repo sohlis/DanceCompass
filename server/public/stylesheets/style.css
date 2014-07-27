@@ -13,3 +13,11 @@ a {
   width: 320px;
   height: 520px;
 }
+
+#stage-one{
+  background: rgba(0,167,200,0.7);
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+
+}
