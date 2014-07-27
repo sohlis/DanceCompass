@@ -54,7 +54,7 @@
        }
 
        // set maxSize, whatever is the biggest value from dataset
-       var maxSize = 8.000;
+       var maxSize = 4.000;
 
        //input: data size; output: circle size
        function dataToSize(data) {
@@ -73,9 +73,13 @@
          $.ajax('/api',{success:function(data, textStatus) {
            d=JSON.parse(data).Rock;
            e=JSON.parse(data)['Hip-Hop'];
-           if(!isNaN(d) && !isNaN(e)) {
-             getSizeAndColor(d, e);
+           if(isNaN(d)) {
+             d = 0;
            }
+           if(isNaN(e)) {
+             e = 0;
+           }
+           getSizeAndColor(d, e);
          }});
        }
 
@@ -101,8 +105,8 @@
     }
 
     // id, startingSizeDataPoint, startingColorPercentage, animate, updateDelay, transitionDelay
-      displayCircles("#stage1", 40, 5, true, 400, 400);
-      displayCircles("#stage2", 40, 5, true, 400, 400);
+      displayCircles("#stage1", 0, 0, true, 400, 400);
+      displayCircles("#stage2", 0, 0, true, 400, 400);
 
 
   	</script>
