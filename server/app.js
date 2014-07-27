@@ -7,8 +7,10 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 var redis = require('redis');
 var db = redis.createClient();
+var db2 = redis.createClient();
 var app = express();
 
 // view engine setup
@@ -22,9 +24,11 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
+	req.db = db;
 	next();
 });
 app.use('/', routes);
+app.use('/api', api);
 app.use('/users', users);
 
 /// catch 404 and forward to error handler
@@ -58,5 +62,17 @@ app.use(function(err, req, res, next) {
     });
 });
 
+db2.on("message", function(channel, message) {
+	console.log("message");
+	if(channel == "stream") {
+		var data = JSON.parse(message);
+		db.set("intensity",data.intensity);
+	}
+});
+
+db2.on("subscribe", function(channel, count) {
+	console.log("Subscribed");
+});
+db2.subscribe("stream");
 
 module.exports = app;
