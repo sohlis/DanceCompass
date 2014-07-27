@@ -9,140 +9,115 @@
     <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
   </head>
 
-<body>
-  <div id=map>
-    <div id="stage1" class="aCircle" style="width:350px; height:350px;"></div>
-    <div id="stage2" class="aCircle" style="width:350px; height:350px;"></div>
-
-  </div>
-
-
-<script>
-
-	function displayCircles(id, startingSizeDataPoint, startingColorPercentage, animate, updateDelay, transitionDelay) {
-		/* circle visualization settings that use a data point between 0-400 to determine x, y and radius */
-		var circleRadius = d3.scale.linear().domain([0, 400]).range(["5", 125]);
-
-		/*
-		 * X and Y axis are set to dynamically change so when it animates the circle slightly moves up/down, left/right
-		 * so that as the radius changes the location moves to fit better
-		 */
-		var circleYaxis = d3.scale.linear().domain([0, 400]).range(["50%", "50%"]);
-		var circleXaxis = d3.scale.linear().domain([0, 400]).range(["50%", "50%"]);
-
-		/* "stop light" color range for circle from green through yellow, orange and red using 0-100 as the range */
-		var circleColorRange = d3.scale.linear().domain([0,33,67,100]).range(["green", "#FFCC00", "#FF9900", "red"]);
-
-		// create an SVG element inside the #graph div that fills 100% of the div
-		var vis = d3.select(id).append("svg:svg").attr("width", "100%").attr("height", "100%");
-		/* add a circle -- we don't use the data point, as we will set it manually to animate it, so just passing in [1] */
-		var circle = vis.selectAll("circle").data([1]).enter().append("svg:circle");
-		/* setup the initial styling and sizing of the circle */
-		circle
-			.style("fill", circleColorRange(startingColorPercentage))
-			.attr("cx", circleXaxis(startingSizeDataPoint))
-			.attr("cy", circleYaxis(startingSizeDataPoint))
-			.attr("r", circleRadius(startingSizeDataPoint));
-
-		function redraw(dataValue, colorPercentage) {
-			// update the circle
-			d3.selectAll(id).selectAll("circle")
-				.transition()
-				.duration(transitionDelay)
-				.attr("cy", circleYaxis(dataValue))
-				.attr("cx", circleXaxis(dataValue))
-				.attr("r", circleRadius(dataValue))
-				.style("fill", circleColorRange(colorPercentage));
-		}
-
-    // set maxSize, whatever is the biggest value from dataset
-    var maxSize = 8.000;
-
-    function stage1data() {
-      return Math.random() * (maxSize - 0.000);
-    }
-
-    function stage2data() {
-      return Math.random() * (maxSize - 0.000);
-    }
-
-    //input: data size; output: circle size
-    function dataToSize(data) {
-      return ((data*220)/maxSize)+20
-    }
-
-    //input: data size; output: color number (100 = red .. 0 = green)
-    function sizeToColor(size) {
-      colorNumber = ((size*100)/maxSize)
-      return colorNumber
-    }
+  <body>
+    <div id=map>
+      <div id="stage1" class="aCircle" style="width:350px; height:350px;"></div>
+      <div id="stage2" class="aCircle" style="width:350px; height:350px;"></div>
+    </div>
 
 
-    ///////////////////////////////////////////// STAGE ONE
+  <script>
 
-    function stage1data() {
-      return Math.random() * (maxSize - 0.000);
-    }
+  	function displayCircles(id, startingSizeDataPoint, startingColorPercentage, animate, updateDelay, transitionDelay) {
+  		/* circle visualization settings that use a data point between 0-400 to determine x, y and radius */
+  		var circleRadius = d3.scale.linear().domain([0, 400]).range(["5", 125]);
 
-    var size1 = [];
-    var color1 = [];
+      // to leave circle in middle
+  		var circleYaxis = d3.scale.linear().domain([0, 400]).range(["50%", "50%"]);
+  		var circleXaxis = d3.scale.linear().domain([0, 400]).range(["50%", "50%"]);
 
-    //return an array with 5 data numbers and their corresponding size and color
-    var sizeAndColor1 = function(){
-      data = stage1data();
-      size1.push(Math.floor(dataToSize(data)));
-      color1.push(sizeToColor(data));
-    }
+  		/* "stop light" color range for circle from green through yellow, orange and red using 0-100 as the range */
+  		var circleColorRange = d3.scale.linear().domain([0,33,67,100]).range(["green", "#FFCC00", "#FF9900", "red"]);
 
-		if(animate) {
-			setInterval(function() {
-        sizeAndColor1();
-			   var vS = size1.shift(); // remove the first element of the array
-			   size1.push(vS); // add a new element to the array (we're just taking  the number we just shifted off the front and appending to the end)
-			   var vC = color1.shift(); // remove the first element of the array
-			   color1.push(vC); // add a new element to the array (we're just taking the number we just shifted off the front and appending to the end)
+  		// create an SVG element inside the #graph div that fills 100% of the div
+  		var vis = d3.select(id).append("svg:svg").attr("width", "100%").attr("height", "100%");
+  		/* add a circle -- we don't use the data point, as we will set it manually to animate it, so just passing in [1] */
+  		var circle = vis.selectAll("circle").data([1]).enter().append("svg:circle");
+  		/* setup the initial styling and sizing of the circle */
+  		circle
+  			.style("fill", circleColorRange(startingColorPercentage))
+  			.attr("cx", circleXaxis(startingSizeDataPoint))
+  			.attr("cy", circleYaxis(startingSizeDataPoint))
+  			.attr("r", circleRadius(startingSizeDataPoint));
 
-			   redraw(vS, vC);
-			}, updateDelay);
-		}
+  		function redraw(dataValue, colorPercentage) {
+  			// update the circle
+  			d3.selectAll(id).selectAll("circle")
+  				.transition()
+  				.duration(transitionDelay)
+  				.attr("cy", circleYaxis(dataValue))
+  				.attr("cx", circleXaxis(dataValue))
+  				.attr("r", circleRadius(dataValue))
+  				.style("fill", circleColorRange(colorPercentage));
+  		}
 
-    ///////////////////////////////////////////// STAGE TWO
+      // set maxSize, whatever is the biggest value from dataset
+      var maxSize = 8.000;
 
-    function stage2data() {
-      return Math.random() * (maxSize - 0.000);
-    }
+      //input: data size; output: circle size
+      function dataToSize(data) {
+        return ((data*220)/maxSize)+20
+      }
 
-    var size2 = [];
-    var color2 = [];
+      //input: data size; output: color number (100 = red .. 0 = green)
+      function sizeToColor(size) {
+        colorNumber = ((size*100)/maxSize)
+        return colorNumber
+      }
 
-    //return an array with 5 data numbers and their corresponding size and color
-    var sizeAndColor2 = function(){
-      data = stage2data();
-      size2.push(Math.floor(dataToSize(data)));
-      color2.push(sizeToColor(data));
-    }
 
-    if(animate) {
-      setInterval(function() {
-        sizeAndColor2();
-         var vS = size2.shift(); // remove the first element of the array
-         size2.push(vS); // add a new element to the array (we're just taking  the number we just shifted off the front and appending to the end)
-         var vC = color2.shift(); // remove the first element of the array
-         color2.push(vC); // add a new element to the array (we're just taking the number we just shifted off the front and appending to the end)
+      ///////////////////////////////////////////// STAGE ONE
 
-         redraw(vS, vC);
-      }, updateDelay);
-    }
+      function stage1data() {
+        return Math.random() * (maxSize - 0.000);
+      }
 
-	}
+      //return an array with 5 data numbers and their corresponding size and color
+      var sizeAndColor1 = function(){
+        data = stage1data();
+        var size1 = Math.floor(dataToSize(data));
+        var color1 = sizeToColor(data);
+        redraw(size1, color1);
 
-  // id, startingSizeDataPoint, startingColorPercentage, animate, updateDelay, transitionDelay
-	displayCircles("#stage1", 40, 5, true, 400, 400);
+      }
 
-  displayCircles("#stage2", 40, 5, true, 400, 400);
+      if(animate) {
+        setInterval(function() {
+          sizeAndColor1();
+        }, updateDelay);
+      }
 
-	</script>
 
-</body>
+      ///////////////////////////////////////////// STAGE TWO
+
+      function stage2data() {
+        return Math.random() * (maxSize - 0.000);
+      }
+
+      //return an array with 5 data numbers and their corresponding size and color
+      var sizeAndColor2 = function(){
+        data = stage2data();
+        var size2 = Math.floor(dataToSize(data));
+        var color2 = sizeToColor(data);
+        redraw(size2, color2);
+
+      }
+
+      if(animate) {
+        setInterval(function() {
+          sizeAndColor2();
+        }, updateDelay);
+      }
+
+
+  	}
+
+    // id, startingSizeDataPoint, startingColorPercentage, animate, updateDelay, transitionDelay
+  	displayCircles("#stage1", 40, 5, true, 400, 400);
+    displayCircles("#stage2", 40, 5, true, 400, 400);
+
+  	</script>
+
+  </body>
 
 </html>
