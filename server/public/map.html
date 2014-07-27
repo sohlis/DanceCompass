@@ -68,14 +68,19 @@
       }
 
 
-      // ////////////////////////////////////////////// BOTH STAGES
-      // function stageOneData() {
-      //   return Math.random() * (maxSize - 0.000);
+      ////////////////////////////////////////////// BOTH STAGES
+      // function danceData() {
+      //   $.ajax('/api',{success:function(data, textStatus) {
+      //      d=JSON.parse(data)["Rock"];
+      //      e=JSON.parse(data)["Hip-hop"];
+      //      if(!isNaN(d)) {
+      //        data.push(d);
+      //      }else if (!isNaN(e))
+      //        data.push(e);
+      //    }});
+      //
       // }
       //
-      // function stageTwoData() {
-      //   return Math.random() * (maxSize - 0.000);
-      // }
       //
       //
       // //return an array with 5 data numbers and their corresponding size and color
@@ -96,10 +101,12 @@
 
       ///////////////////////////////////////////// STAGE ONE
       function stageOneData() {
-        $.ajax('/api',{success:function(data, textStatus) {
-                                         d=JSON.parse(data)["Rock"];
-                                         e=JSON.parse(data)["Hip-hop"];
-                                       }});
+        $.ajax('/api',{success:function(d, textStatus) {
+          d=JSON.parse(d)["Rock"];
+          if(!isNaN(d)) {
+          data.push(d);
+          }
+        }});
 
       }
 
