@@ -67,25 +67,29 @@
         return colorNumber
       }
 
-
       ////////////////////////////////////////////// BOTH STAGES
+      // function ajaxSuccess(data) {
+      //   console.log("success======" + data)
+      // };
+      //
       // function danceData() {
-      //   $.ajax('/api',{success:function(data, textStatus) {
-      //      d=JSON.parse(data)["Rock"];
-      //      e=JSON.parse(data)["Hip-hop"];
-      //      if(!isNaN(d)) {
-      //        data.push(d);
-      //      }else if (!isNaN(e))
-      //        data.push(e);
-      //    }});
-      //
+      //   var data;
+      //   $.ajax('/api',{success:function(d, textStatus) {
+      //     d=JSON.parse(d)["Rock"];
+      //     if(!isNaN(d)) {
+      //       data = d;
+      //       console.log("inside= "+data)
+      //     }
+      //   }}).done(ajaxSuccess(data));
       // }
-      //
-      //
       //
       // //return an array with 5 data numbers and their corresponding size and color
       // var sizeAndColor = function(){
-      //   data = stageOneData();
+      //   data = danceData();
+      //   stageOne = data["Rock"];
+      //   stageTwo = data["Rap"];
+      //
+      //
       //   var sizeOne = Math.floor(dataToSize(data));
       //   var colorOne = sizeToColor(data);
       //   redraw(sizeOne, colorOne, "stage1");
@@ -100,17 +104,9 @@
       // }
 
       ///////////////////////////////////////////// STAGE ONE
+
       function stageOneData() {
-        var data;
-        $.ajax('/api',{success:function(d, textStatus) {
-          d=JSON.parse(d)["Rock"];
-          if(!isNaN(d)) {
-            alert(d);
-          }
-        }});
-        // alert(data);
-
-
+        return Math.random() * (maxSize - 0.000);
       }
 
       //return an array with 5 data numbers and their corresponding size and color
@@ -120,7 +116,6 @@
         var colorOne = sizeToColor(data);
         redraw(sizeOne, colorOne, "stage1");
         console.log("size one = " + sizeOne + ", color one = "+ colorOne)
-
       }
 
       if(animate) {
@@ -148,7 +143,6 @@
           sizeAndColorTwo();
         }, updateDelay);
       }
-
   	}
 
     // id, startingSizeDataPoint, startingColorPercentage, animate, updateDelay, transitionDelay
