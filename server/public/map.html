@@ -33,16 +33,18 @@
   		var vis = d3.select(id).append("svg:svg").attr("width", "100%").attr("height", "100%");
   		/* add a circle -- we don't use the data point, as we will set it manually to animate it, so just passing in [1] */
   		var circle = vis.selectAll("circle").data([1]).enter().append("svg:circle");
-  		/* setup the initial styling and sizing of the circle */
+
+      /* setup the initial styling and sizing of the circle */
   		circle
   			.style("fill", circleColorRange(startingColorPercentage))
   			.attr("cx", circleXaxis(startingSizeDataPoint))
   			.attr("cy", circleYaxis(startingSizeDataPoint))
   			.attr("r", circleRadius(startingSizeDataPoint));
 
-  		function redraw(dataValue, colorPercentage) {
+  		function redraw(dataValue, colorPercentage, stage) {
   			// update the circle
-  			d3.selectAll(id).selectAll("circle")
+        console.log(stage)
+  			d3.selectAll('#'+stage).selectAll("circle")
   				.transition()
   				.duration(transitionDelay)
   				.attr("cy", circleYaxis(dataValue))
@@ -66,55 +68,83 @@
       }
 
 
-      ///////////////////////////////////////////// STAGE ONE
+      // ////////////////////////////////////////////// BOTH STAGES
+      // function stageOneData() {
+      //   return Math.random() * (maxSize - 0.000);
+      // }
+      //
+      // function stageTwoData() {
+      //   return Math.random() * (maxSize - 0.000);
+      // }
+      //
+      //
+      // //return an array with 5 data numbers and their corresponding size and color
+      // var sizeAndColor = function(){
+      //   data = stageOneData();
+      //   var sizeOne = Math.floor(dataToSize(data));
+      //   var colorOne = sizeToColor(data);
+      //   redraw(sizeOne, colorOne, "stage1");
+      //   console.log("size one = " + sizeOne + ", color one = "+ colorOne)
+      //
+      // }
+      //
+      // if(animate) {
+      //   setInterval(function() {
+      //     sizeAndColorOne();
+      //   }, updateDelay);
+      // }
 
-      function stage1data() {
-        return Math.random() * (maxSize - 0.000);
+      ///////////////////////////////////////////// STAGE ONE
+      function stageOneData() {
+        $.ajax('/api',{success:function(data, textStatus) {
+                                         d=JSON.parse(data)["Rock"];
+                                         e=JSON.parse(data)["Hip-hop"];
+                                       }});
+
       }
 
       //return an array with 5 data numbers and their corresponding size and color
-      var sizeAndColor1 = function(){
-        data = stage1data();
-        var size1 = Math.floor(dataToSize(data));
-        var color1 = sizeToColor(data);
-        redraw(size1, color1);
+      var sizeAndColorOne = function(){
+        data = stageOneData();
+        var sizeOne = Math.floor(dataToSize(data));
+        var colorOne = sizeToColor(data);
+        redraw(sizeOne, colorOne, "stage1");
+        console.log("size one = " + sizeOne + ", color one = "+ colorOne)
 
       }
 
       if(animate) {
         setInterval(function() {
-          sizeAndColor1();
+          sizeAndColorOne();
         }, updateDelay);
       }
-
 
       ///////////////////////////////////////////// STAGE TWO
-
-      function stage2data() {
+      function stageTwoData() {
         return Math.random() * (maxSize - 0.000);
       }
 
       //return an array with 5 data numbers and their corresponding size and color
-      var sizeAndColor2 = function(){
-        data = stage2data();
-        var size2 = Math.floor(dataToSize(data));
-        var color2 = sizeToColor(data);
-        redraw(size2, color2);
-
+      var sizeAndColorTwo = function(){
+        data = stageTwoData();
+        var sizeTwo = Math.floor(dataToSize(data));
+        var colorTwo = sizeToColor(data);
+        redraw(sizeTwo, colorTwo, "stage2");
+        console.log("size two = " + sizeTwo + ", color two = "+ colorTwo);
       }
 
       if(animate) {
         setInterval(function() {
-          sizeAndColor2();
+          sizeAndColorTwo();
         }, updateDelay);
       }
-
 
   	}
 
     // id, startingSizeDataPoint, startingColorPercentage, animate, updateDelay, transitionDelay
   	displayCircles("#stage1", 40, 5, true, 400, 400);
     displayCircles("#stage2", 40, 5, true, 400, 400);
+
 
   	</script>
 
