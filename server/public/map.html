@@ -101,12 +101,15 @@
 
       ///////////////////////////////////////////// STAGE ONE
       function stageOneData() {
+        var data;
         $.ajax('/api',{success:function(d, textStatus) {
           d=JSON.parse(d)["Rock"];
           if(!isNaN(d)) {
-          data.push(d);
+            alert(d);
           }
         }});
+        // alert(data);
+
 
       }
 
