@@ -25,16 +25,38 @@ a {
   position: absolute;
 }
 
-#stage1{
+.stage1{
   position:absolute;
   top: 14%;
   left: 62%;
 }
 
-#stage2{
+.stage2{
   position:absolute;
   top: 35%;
   left: 17%;
+}
+
+#map_mobile{
+  width: 583px;
+  height: 960px;
+  margin: 0 auto;
+  background: url('http://imgur.com/ZtzXY2D.png');
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+}
+
+.mobile_stage1{
+  position:absolute;
+  /*top: 89%;
+  left: 10%;*/
+}
+
+.mobile_stage2{
+  position:absolute;
+  /*top: 35%;
+  left: 17%;*/
 }
 
 
