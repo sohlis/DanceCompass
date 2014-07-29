@@ -35,7 +35,7 @@ $(document).ready(function(){
      }
 
      // set maxSize, whatever is the biggest value from dataset
-     var maxSize = 4.000;
+     var maxSize = 5.000;
 
      //input: data size; output: circle size
      function dataToSize(data) {
@@ -56,8 +56,8 @@ $(document).ready(function(){
 
      function danceData() {
        $.ajax('/api',{success:function(data, textStatus) {
-        //  d=Math.log(JSON.parse(data).Rock);
-        //  e=Math.log(JSON.parse(data)['Hip-hop']);
+        //  d=Math.log(e + JSON.parse(data).Rock);
+        //  e=Math.log(e + JSON.parse(data)['Hip-hop']);
         d=JSON.parse(data).Rock;
         e=JSON.parse(data)['Hip-hop'];
          if(isNaN(d)) {

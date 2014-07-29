@@ -106,22 +106,22 @@ html, body, #map {
 div#map_mobile{
   margin: 0px;
   padding: 0px;
-  width: 583px;
-  height: 960px;
+  width: 640px;
+  height: 1136px;
   margin: 0 auto;
-  background: url('http://imgur.com/ZtzXY2D.png');
+  /*background: url('http://i.imgur.com/SNYp18N.png');*/
   position: absolute;
 }
 
 .mobile_stage1{
   position:absolute;
-  top: 45%;
-  left: 12%;
+  top: 52%;
+  left: 22%;
 }
 
 .mobile_stage2{
   position:absolute;
   margin: -45px 0 0 -40px;
-  top: 0%;
-  left: 0%;
+  top: 9%;
+  left: 6%;
 }
