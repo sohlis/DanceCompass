@@ -35,7 +35,7 @@ $(document).ready(function(){
      }
 
      // set maxSize, whatever is the biggest value from dataset
-     var maxSize = 1.5;
+     var maxSize = 1.500;
 
      //input: data size; output: circle size
      function dataToSize(data) {
