@@ -9,8 +9,10 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
 var redis = require('redis');
-var db = redis.createClient();
-var db2 = redis.createClient();
+var db = redis.createClient(6379, "redis-gersh-8229132937.redis.irstack.com");
+db.auth("redis-gersh-8229132937.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4");
+var db2 = redis.createClient(6379, "redis-gersh-8229132937.redis.irstack.com");
+db.auth("redis-gersh-8229132937.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4");
 var app = express();
 
 // view engine setup
