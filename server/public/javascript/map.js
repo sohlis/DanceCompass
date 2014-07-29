@@ -48,10 +48,18 @@ $(document).ready(function(){
        return colorNumber;
      }
 
+     function danceData2() {
+       d = Math.random() * (maxSize - 0.000);
+       e = Math.random() * (maxSize - 0.000);
+       getSizeAndColor(d, e);
+     }
+
      function danceData() {
        $.ajax('/api',{success:function(data, textStatus) {
-         d=Math.log(JSON.parse(data).Rock);
-         e=Math.log(JSON.parse(data)['Hip-hop']);
+        //  d=Math.log(JSON.parse(data).Rock);
+        //  e=Math.log(JSON.parse(data)['Hip-hop']);
+        d=JSON.parse(data).Rock;
+        e=JSON.parse(data)['Hip-hop'];
          if(isNaN(d)) {
            d = 0;
          }
