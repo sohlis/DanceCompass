@@ -1,4 +1,4 @@
-{
+*{
     margin: 0;
     padding: 0;
 }
@@ -23,6 +23,8 @@ html, body, #map {
 
 #map > .screen,
 #map > img {
+    margin: 0;
+    padding: 0;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -69,31 +71,20 @@ html, body, #map {
     }
 }
 
-/*#map {
-  margin: 0 auto;
-  background: url('http://imgur.com/iqR0WZN.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
+@media (max-width: 1061px) {
+  #map > .screen > #stage1,
+  #map > .screen > #stage2 {
+      top: 13%;
+      right: 6%;
+  }
 
-.stage1{
-  position:absolute;
-  top: 14%;
-  left: 62%;
-}
+  #map > .screen > #stage2 {
+    left: auto;
+    top: 25%;
+    right: 49%;
 
-.stage2{
-  position:absolute;
-  top: 35%;
-  left: 17%;
-}*/
+  }
+}
 
 .aCircle {
   -webkit-animation: pulsate 3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
