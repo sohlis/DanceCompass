@@ -37,28 +37,6 @@ a {
   left: 17%;
 }
 
-#map_mobile{
-  width: 583px;
-  height: 960px;
-  margin: 0 auto;
-  background: url('http://imgur.com/ZtzXY2D.png');
-  margin: 0px;
-  padding: 0px;
-  position: absolute;
-}
-
-.mobile_stage1{
-  position:absolute;
-  /*top: 89%;
-  left: 10%;*/
-}
-
-.mobile_stage2{
-  position:absolute;
-  /*top: 35%;
-  left: 17%;*/
-}
-
 
 @media only screen and (max-width: 827px) {
 
@@ -86,86 +64,112 @@ a {
 
 ///////////media queries
 @media (max-height: 1000px) {
-  #stage1{top: 16%;}
+  .stage1{top: 16%;}
 }
 @media (max-height: 900px) {
-  #stage1{top: 12%;}
-  #stage2{top: 34%;}
+  .stage1{top: 12%;}
+  .stage2{top: 34%;}
 }
 @media (max-height: 850px) {
-  #stage1{top: 10%;}
-  #stage2{top: 33%;}
+  .stage1{top: 10%;}
+  .stage2{top: 33%;}
 }
 @media (max-height: 800px) {
-  #stage1{top: 8%;}
-  #stage2{top: 32%;}
+  .stage1{top: 8%;}
+  .stage2{top: 32%;}
 }
 @media (max-height: 750px) {
-  #stage1{top: 6%;}
-  #stage2{top: 31%;}
+  .stage1{top: 6%;}
+  .stage2{top: 31%;}
 }
 @media (max-height: 700px) {
-  #stage1{top: 4%;}
-  #stage2{top: 30%;}
+  .stage1{top: 4%;}
+  .stage2{top: 30%;}
 }
 @media (max-height: 650px) {
-  #stage1{top: 2%;}
-  #stage2{top: 30%;}
+  .stage1{top: 2%;}
+  .stage2{top: 30%;}
 }
 @media (max-height: 600px) {
-  #stage1{display: none;}
-  #stage2{display: none;}
+  .stage1{display: none;}
+  .stage2{display: none;}
 }
 @media (max-width: 1600px) {
-  #stage1{left: 61%;}
-  #stage2{left: 16%;}
+  .stage1{left: 61%;}
+  .stage2{left: 16%;}
 }
 @media (max-width: 1500px) and (max-width: 861px) {
-  #stage1{left: 60%;}
-  #stage2{left: 15%;}
-  #stage1{top: 16%;}
+  .stage1{left: 60%;}
+  .stage2{left: 15%;}
+  .stage1{top: 16%;}
 }
 @media (max-width: 1400px) {
-  #stage1{left: 59%;}
-  #stage2{left: 14%;}
+  .stage1{left: 59%;}
+  .stage2{left: 14%;}
 }
 @media (max-width: 1300px) {
-  #stage1{left: 58%;}
-  #stage2{left: 13%;}
-  #stage1{top: 17%;}
+  .stage1{left: 58%;}
+  .stage2{left: 13%;}
+  .stage1{top: 17%;}
 }
 @media (max-width: 1200px) {
-  #stage1{left: 57%;}
-  #stage2{left: 12%;}
-  #stage1{top: 18%;}
+  .stage1{left: 57%;}
+  .stage2{left: 12%;}
+  .stage1{top: 18%;}
 }
 @media (max-width: 1100px) {
-  #stage1{left: 56%;}
-  #stage2{left: 11%;}
+  .stage1{left: 56%;}
+  .stage2{left: 11%;}
 }
 @media (max-width: 1150px) {
-  #stage1{left: 55%;}
-  #stage2{left: 10%;}
-  #stage1{top: 18%;}
+  .stage1{left: 55%;}
+  .stage2{left: 10%;}
+  .stage1{top: 18%;}
 
 }
 @media (max-width: 1000px) {
-  #stage2{left: 7%;}
-  #stage1{top: 20%;}
+  .stage2{left: 7%;}
+  .stage1{top: 20%;}
 }
 @media (max-width: 950px) {
-  #stage2{left: 6%;}
-  #stage1{top: 20%;}
+  .stage2{left: 6%;}
+  .stage1{top: 20%;}
 }
 @media (max-width: 900px) {
-  #stage2{left: 3%;}
-  #stage1{top: 20%;}
+  .stage2{left: 3%;}
+  .stage1{top: 20%;}
 }
 @media (max-width: 850px) {
-  #stage2{left: 1%;}
-  #stage1{top: 18%;}
+  .stage2{left: 1%;}
+  .stage1{top: 18%;}
 }
 @media (max-width: 800px) {
-  #stage1{display: none;}
-  #stage2{display: none;}
+  .stage1{display: none;}
+  .stage2{display: none;}
+}
+
+
+
+/*/////////////////////////////////  mobile map    */
+
+#map_mobile{
+  width: 583px;
+  height: 960px;
+  margin: 0 auto;
+  background: url('http://imgur.com/ZtzXY2D.png');
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+}
+
+.mobile_stage1{
+  position:absolute;
+  top: 55%;
+  left: 26%;
+}
+
+.mobile_stage2{
+  position:absolute;
+  top: 1%;
+  left: 5%;
 }
