@@ -74,8 +74,8 @@ html, body, #map {
 @media (max-width: 1061px) {
   #map > .screen > #stage1,
   #map > .screen > #stage2 {
-      top: 13%;
-      right: 6%;
+      top: 14%;
+      right: 11%;
   }
 
   #map > .screen > #stage2 {
