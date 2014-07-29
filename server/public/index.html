@@ -19,9 +19,9 @@
 
 		<script>
 
-		var n = 1,
+		var n = 40,
 		    random = d3.random.normal(0, .2),
-		    data = d3.range(n).map(random);
+		    data = [];
 
 		var margin = {top: 20, right: 20, bottom: 20, left: 40},
 		    width = 640 - margin.left - margin.right,
@@ -71,8 +71,8 @@
 		tick();
 		function tick() {
 			// push a new data point onto the back
-			$.ajax('/api',{success:function(d, textStatus) {
-					d=JSON.parse(d)["Rock"];
+			$.ajax('/api',{success:function(dat, textStatus) {
+					d=JSON.parse(dat)["Rock"];
 					if(!isNaN(d)) {
 						data.push(d);
 					}
@@ -127,8 +127,8 @@
 		    }
 		});
 		setInterval(function() {
-			$.ajax('/api',{success:function(data, textStatus) {
-					 d=JSON.parse(data)["Rock"];
+			$.ajax('/api',{success:function(dat, textStatus) {
+					 d=JSON.parse(dat)["Rock"];
 					 chart.load({"columns": [ ["data" , (d*10)] ] });
 			 }},2000);
 		 });
