@@ -9,10 +9,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
 var redis = require('redis');
-var db = redis.createClient(6379, "redis-gersh-8229132937.redis.irstack.com");
-db.auth("redis-gersh-8229132937.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4");
-var db2 = redis.createClient(6379, "redis-gersh-8229132937.redis.irstack.com");
-db.auth("redis-gersh-8229132937.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4");
+var db = redis.createClient();
+var db2 = redis.createClient();
 var app = express();
 
 // view engine setup
@@ -66,7 +64,7 @@ app.use(function(err, req, res, next) {
 
 var minReste
 var lastTimestamp = 0;
-db2.on("message", function(channel, message) {
+/*db2.on("message", function(channel, message) {
 	console.log("message");
 	if(channel == "stream") {
 		try {
@@ -108,5 +106,5 @@ db2.on("subscribe", function(channel, count) {
 	console.log("Subscribed");
 });
 db2.subscribe("stream");
-
+*/
 module.exports = app;

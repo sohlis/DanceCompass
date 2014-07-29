@@ -50,8 +50,8 @@ $(document).ready(function(){
 
      function danceData() {
        $.ajax('/api',{success:function(data, textStatus) {
-         d=JSON.parse(data).Rock;
-         e=JSON.parse(data)['Hip-hop'];
+         d=Math.log(JSON.parse(data).Rock);
+         e=Math.log(JSON.parse(data)['Hip-hop']);
          if(isNaN(d)) {
            d = 0;
          }

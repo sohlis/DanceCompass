@@ -17,15 +17,20 @@ router.get('/', function(req, res) {
 		for(var i in reply) {
 			m = m.get("intensity" + reply[i]);	
 		}
-		m.exec(function(err, replies) {
-			console.log("REPLIES");
-			console.log(replies);
-			var ret = {};
-			for(i in reply) {
-				ret[reply[i]] = replies[i];
-			}
-			res.send(JSON.stringify(ret));
-		});
+		if(reply.length == 0) {
+			res.send("{}");
+		}
+		else {
+			m.exec(function(err, replies) {
+				console.log("REPLIES");
+				console.log(replies);
+				var ret = {};
+				for(i in reply) {
+					ret[reply[i]] = replies[i];
+				}
+				res.send(JSON.stringify(ret));
+			});
+		}
 	});
 });
 router.get('/clear', function(req, res) {
