@@ -109,6 +109,7 @@ div#map_mobile{
   width: 640px;
   height: 1136px;
   margin: 0 auto;
+  background-color: rgba(255,255,255,0.0);
   /*background: url('http://i.imgur.com/SNYp18N.png');*/
   position: absolute;
 }
