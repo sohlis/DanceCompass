@@ -15,7 +15,6 @@
       <div id="stage2" class="aCircle" style="width:350px; height:350px;"></div>
     </div>
 
-
   <script>
 
     	function displayCircles(id, startingSizeDataPoint, startingColorPercentage, animate, updateDelay, transitionDelay) {
@@ -43,7 +42,6 @@
 
        function redraw(dataValue, colorPercentage, stage) {
          // update the circle
-         console.log(stage);
          d3.selectAll('#'+stage).selectAll("circle")
            .transition()
            .duration(transitionDelay)
@@ -78,6 +76,7 @@
              e = 0;
            }
            getSizeAndColor(d, e);
+           console.log(data);
          }});
        }
 

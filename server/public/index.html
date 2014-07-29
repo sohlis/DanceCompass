@@ -12,7 +12,7 @@
 
 	<body>
 		<div id="content">
-		<h1 style="padding-left: 1em">DanceCompass</h1>
+		<h1 style="text-align: center;">Travoltage</h1>
 		<hr>
 		<div style="padding-top: 2em;" id="chart"></div>
 		<!-- LiveData CHarts -->
@@ -85,7 +85,7 @@
 					.ease("linear")
 					.attr("transform", "translate(" + x(0) + ",0)")
 					.each("end", function() {
-						setInterval(tick, 2000);        
+						setInterval(tick, 2000);
 					});
 					if(data.length > 40) {
 						// pop the old data point off the front
