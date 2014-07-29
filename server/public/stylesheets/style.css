@@ -1,16 +1,75 @@
+{
+    margin: 0;
+    padding: 0;
+}
+
 body,html {
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-  height: 100%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 
 a {
   color: #00B7FF;
 }
 
+html, body, #map {
+    height: 100%;
+}
+
 #map {
+    overflow: hidden;
+    position: relative;
+}
+
+#map > .screen,
+#map > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#map > .screen > #stage1,
+#map > .screen > #stage2 {
+    content: "";
+    position: absolute;
+    width: 50.5vmax;
+    height: 50.5vmax;
+    top: 10%;
+    right: 4%;
+}
+
+#map > .screen > #stage2 {
+  left: auto;
+  top: 22%;
+  right: 46%;
+
+}
+
+@media screen and (min-aspect-ratio: 2842/2383) {
+    #map > img {
+        width: 100vw;
+    }
+
+    #map > .screen {
+        width: 100vw;
+        height: 83.85vw;
+    }
+}
+
+@media screen and (max-aspect-ratio: 2842/2383) {
+    #map > img {
+        height: 100vh;
+    }
+
+    #map > .screen {
+        height: 100vh;
+        width: 119.26vh;
+    }
+}
+
+/*#map {
   margin: 0 auto;
   background: url('http://imgur.com/iqR0WZN.png') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -34,31 +93,10 @@ a {
   position:absolute;
   top: 35%;
   left: 17%;
-}
+}*/
 
-
-@media only screen and (max-width: 827px) {
-
-  #map {
-  background: url('http://imgur.com/iqR0WZN.png') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  zoom: 100%;
-  }
-}
-
-#stage-one{
-  background: rgba(0,167,200,0.7);
-	border-radius: 50%;
-	width: 100px;
-	height: 100px;
-
-}
-
-.aCircle{
-  -webkit-animation: pulsate 3s ease-out;
+.aCircle {
+  -webkit-animation: pulsate 3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
   -webkit-animation-iteration-count: infinite;
   opacity: 0.0
 }
@@ -69,118 +107,30 @@ a {
     50% {-webkit-transform: scale(1.3, 1.3); opacity: 1.0;}
     75% {opacity: 0.9;}
     100% {-webkit-transform: scale(1.0, 1.0); opacity: 1.0;}
-
-
 }
-
-///////////media queries
-@media (max-height: 1000px) {
-  .stage1{top: 16%;}
-}
-@media (max-height: 900px) {
-  .stage1{top: 12%;}
-  .stage2{top: 34%;}
-}
-@media (max-height: 850px) {
-  .stage1{top: 10%;}
-  .stage2{top: 33%;}
-}
-@media (max-height: 800px) {
-  .stage1{top: 8%;}
-  .stage2{top: 32%;}
-}
-@media (max-height: 750px) {
-  .stage1{top: 6%;}
-  .stage2{top: 31%;}
-}
-@media (max-height: 700px) {
-  .stage1{top: 4%;}
-  .stage2{top: 30%;}
-}
-@media (max-height: 650px) {
-  .stage1{top: 2%;}
-  .stage2{top: 30%;}
-}
-@media (max-height: 600px) {
-  .stage1{display: none;}
-  .stage2{display: none;}
-}
-@media (max-width: 1600px) {
-  .stage1{left: 61%;}
-  .stage2{left: 16%;}
-}
-@media (max-width: 1500px) and (max-width: 861px) {
-  .stage1{left: 60%;}
-  .stage2{left: 15%;}
-  .stage1{top: 16%;}
-}
-@media (max-width: 1400px) {
-  .stage1{left: 59%;}
-  .stage2{left: 14%;}
-}
-@media (max-width: 1300px) {
-  .stage1{left: 58%;}
-  .stage2{left: 13%;}
-  .stage1{top: 17%;}
-}
-@media (max-width: 1200px) {
-  .stage1{left: 57%;}
-  .stage2{left: 12%;}
-  .stage1{top: 18%;}
-}
-@media (max-width: 1100px) {
-  .stage1{left: 56%;}
-  .stage2{left: 11%;}
-}
-@media (max-width: 1150px) {
-  .stage1{left: 55%;}
-  .stage2{left: 10%;}
-  .stage1{top: 18%;}
-
-}
-@media (max-width: 1000px) {
-  .stage2{left: 7%;}
-  .stage1{top: 20%;}
-}
-@media (max-width: 950px) {
-  .stage2{left: 6%;}
-  .stage1{top: 20%;}
-}
-@media (max-width: 900px) {
-  .stage2{left: 3%;}
-  .stage1{top: 20%;}
-}
-@media (max-width: 850px) {
-  .stage2{left: 1%;}
-  .stage1{top: 18%;}
-}
-@media (max-width: 800px) {
-  .stage1{display: none;}
-  .stage2{display: none;}
-}
-
 
 
 /*/////////////////////////////////  mobile map    */
 
-#map_mobile{
+div#map_mobile{
+  margin: 0px;
+  padding: 0px;
   width: 583px;
   height: 960px;
   margin: 0 auto;
   background: url('http://imgur.com/ZtzXY2D.png');
-  margin: 0px;
-  padding: 0px;
   position: absolute;
 }
 
 .mobile_stage1{
   position:absolute;
-  top: 55%;
-  left: 26%;
+  top: 45%;
+  left: 12%;
 }
 
 .mobile_stage2{
   position:absolute;
-  top: 1%;
-  left: 5%;
+  margin: -45px 0 0 -40px;
+  top: 0%;
+  left: 0%;
 }
